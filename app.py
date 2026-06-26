@@ -69,9 +69,9 @@ if st.button("Run Full Pipeline"):
         
         for script_args in scripts:
             try:
-                subprocess.run(script_args, check=True)
+                subprocess.run(script_args, check=True, capture_output=True, text=True)
             except subprocess.CalledProcessError as e:
-                st.error(f"Error running {script_args[1]}")
+                st.error(f"Error running {script_args[1]}:\n{e.stderr}")
                 st.stop()
             except FileNotFoundError:
                 st.error(f"Could not find Python or the script {script_args[1]}")
