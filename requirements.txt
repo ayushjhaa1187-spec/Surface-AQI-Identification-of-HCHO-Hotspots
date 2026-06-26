@@ -6,3 +6,5 @@ joblib
 matplotlib>=3.7
 fastparquet
 torch
+earthengine-api
+requests
