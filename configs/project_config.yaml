@@ -1,0 +1,44 @@
+project:
+  name: surface_aqi_hcho_india
+  region: India
+  crs: EPSG:4326
+  bbox:
+    west: 68.0
+    south: 6.0
+    east: 98.0
+    north: 38.0
+
+time:
+  start_date: "2019-01-01"
+  end_date: "2024-12-31"
+  biomass_burning_months:
+    pre_monsoon: [3, 4, 5]
+    post_monsoon: [10, 11]
+
+satellite_predictors:
+  insat3d:
+    product: AOD
+    source_url: https://www.mosdac.gov.in/insat-3d-data-products
+  sentinel5p:
+    products: [NO2, SO2, CO, O3, HCHO]
+    gee_collection_prefix: COPERNICUS/S5P/OFFL/L3_
+
+surface_observations:
+  cpcb:
+    pollutants: [PM2.5, PM10, NO2, SO2, CO, O3, NH3]
+    aggregation: daily
+
+meteorology:
+  sources: [ERA5, IMDAA, MERRA-2]
+  variables: [u10, v10, t2m, blh, rh, sp, tp]
+
+modeling:
+  target_pollutants: [PM2.5, PM10, NO2, SO2, CO, O3, NH3]
+  validation_metrics: [rmse, mae, pearson_r, bias]
+  default_model: cnn_lstm
+
+hotspots:
+  hcho_column: HCHO
+  zscore_threshold: 2.0
+  quantile_threshold: 0.90
+  min_fire_confidence: nominal
