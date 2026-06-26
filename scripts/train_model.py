@@ -34,7 +34,7 @@ def train_model(data_path, out_dir):
     features = ['latitude', 'longitude', 'HCHO', 'NO2_column', 'u10', 'v10', 't2m', 'blh', 'AOD']
     available_features = [f for f in features if f in df.columns]
     
-    if len(df) < 2:
+    if len(df) < 10:
         print("Not enough data to train. Expanding mock dataset.")
         df = pd.concat([df]*10, ignore_index=True)
         df['PM2.5'] = df['PM2.5'] + np.random.normal(0, 10, len(df))
