@@ -49,6 +49,15 @@ def create_fixtures():
     })
     era5_df.to_parquet(os.path.join(fixtures_dir, 'era5_sample.parquet'), index=False)
     
+    
+    # 5. INSAT-3D Parquet
+    insat_df = pd.DataFrame({
+        'date': pd.to_datetime(['2023-01-01', '2023-01-01', '2023-01-02']),
+        'latitude': [28.6, 19.0, 28.6],
+        'longitude': [77.2, 72.8, 77.2],
+        'AOD': [0.5, 0.3, 0.6],
+    })
+    insat_df.to_parquet(os.path.join(fixtures_dir, 'insat3d_sample.parquet'), index=False)
     print('Sample fixtures created successfully in tests/fixtures/')
 
 if __name__ == '__main__':

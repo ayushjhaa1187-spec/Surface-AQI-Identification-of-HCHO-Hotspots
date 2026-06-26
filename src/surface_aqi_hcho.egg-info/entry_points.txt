@@ -1,0 +1,2 @@
+[console_scripts]
+surface-aqi-hcho = surface_aqi_hcho.cli:main

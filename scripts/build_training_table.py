@@ -6,6 +6,7 @@ def build_training_table(processed_dir):
     cpcb_path = os.path.join(processed_dir, 'cpcb_daily_station_pollutants.csv')
     s5p_path = os.path.join(processed_dir, 's5p_daily_grid_pollutants.parquet')
     era5_path = os.path.join(processed_dir, 'era5_daily_meteorology.parquet')
+    insat_path = os.path.join(processed_dir, 'insat3d_daily_aod.parquet')
     
     print("Loading processed datasets...")
     cpcb_df = pd.read_csv(cpcb_path)
@@ -13,13 +14,13 @@ def build_training_table(processed_dir):
     
     s5p_df = pd.read_parquet(s5p_path)
     era5_df = pd.read_parquet(era5_path)
+    insat_df = pd.read_parquet(insat_path)
     
     print("Collocating datasets...")
-    # For demonstration, merge on date and exact coordinates
     merged_df = pd.merge(cpcb_df, s5p_df, on=['date', 'latitude', 'longitude'], how='left')
     merged_df = pd.merge(merged_df, era5_df, on=['date', 'latitude', 'longitude'], how='left')
+    merged_df = pd.merge(merged_df, insat_df, on=['date', 'latitude', 'longitude'], how='left')
     
-    # Fill missing values for mock demonstration purposes
     merged_df.fillna(0, inplace=True)
     
     out_path = os.path.join(processed_dir, 'collocated_training_table.parquet')
