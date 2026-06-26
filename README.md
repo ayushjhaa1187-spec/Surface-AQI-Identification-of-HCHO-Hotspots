@@ -117,17 +117,12 @@ This repository now includes a Python starter package for the project:
 ```bash
 python -m pip install -e .[dev]
 pytest
-<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
 surface-aqi-hcho aqi --json '{"PM2.5": 45, "PM10": 260, "NO2": 25}'
 PYTHONPATH=src python scripts/run_demo_workflow.py
-=======
-surface-aqi-hcho --aqi-json '{"PM2.5": 45, "PM10": 260, "NO2": 25}'
->>>>>>> main
 ```
 
-The starter code is intentionally modular so data ingestion scripts, Google Earth Engine exports, CNN-LSTM training code and map generation can be added without changing the AQI, hotspot and validation utility APIs.
+The starter code is intentionally modular so data ingestion scripts, Google Earth Engine exports, CNN-LSTM training code and map generation can be added without changing the AQI, hotspot and validation utility APIs. The README and CLI now reflect the final resolved command structure: `surface-aqi-hcho aqi`, `surface-aqi-hcho inside-india` and `surface-aqi-hcho temporal-features`.
 
-<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
 ## Development Roadmap
 
 The repository now covers the core pieces needed to continue toward a complete solution:
@@ -139,21 +134,15 @@ The repository now covers the core pieces needed to continue toward a complete s
 5. **AQI mapping:** pass predicted pollutant grids through `surface_aqi_hcho.aqi` to derive AQI category and dominant pollutant layers.
 6. **HCHO hotspot attribution:** combine `surface_aqi_hcho.hotspots`, FIRMS fire counts and reanalysis winds to evaluate biomass-burning enhancement and transport.
 
-=======
->>>>>>> main
-## Proposed Repository Structure 
+## Proposed Repository Structure
 
 ```text
 .
 ├── configs/               # Project configuration for spatial extent, datasets and thresholds
 ├── data/                  # Local or linked input datasets, excluded from version control when large
-<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
 ├── gee/                   # Google Earth Engine export templates
 ├── notebooks/             # Exploratory analysis and Google Earth Engine workflows
 ├── scripts/               # Runnable local workflow demonstrations
-=======
-├── notebooks/             # Exploratory analysis and Google Earth Engine workflows
->>>>>>> main
 ├── src/                   # Reusable preprocessing, modeling and visualization code
 ├── tests/                 # Unit tests for AQI, hotspot and metric utilities
 ├── outputs/               # Generated maps, figures and reports
