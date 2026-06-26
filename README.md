@@ -117,18 +117,43 @@ This repository now includes a Python starter package for the project:
 ```bash
 python -m pip install -e .[dev]
 pytest
+<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
+surface-aqi-hcho aqi --json '{"PM2.5": 45, "PM10": 260, "NO2": 25}'
+PYTHONPATH=src python scripts/run_demo_workflow.py
+=======
 surface-aqi-hcho --aqi-json '{"PM2.5": 45, "PM10": 260, "NO2": 25}'
+>>>>>>> main
 ```
 
 The starter code is intentionally modular so data ingestion scripts, Google Earth Engine exports, CNN-LSTM training code and map generation can be added without changing the AQI, hotspot and validation utility APIs.
 
-## Proposed Repository Structure
+<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
+## Development Roadmap
+
+The repository now covers the core pieces needed to continue toward a complete solution:
+
+1. **Data acquisition:** use the source links in `configs/project_config.yaml` and the Google Earth Engine template in `gee/` to export Sentinel-5P HCHO products over India.
+2. **Quality control:** apply valid physical ranges from `surface_aqi_hcho.quality` before collocation and modeling.
+3. **Collocation:** use `surface_aqi_hcho.collocation` to pair CPCB station observations with satellite and meteorological records by distance and time window.
+4. **Model validation:** use `surface_aqi_hcho.metrics` to report RMSE, MAE, bias and Pearson R for predicted surface pollutants.
+5. **AQI mapping:** pass predicted pollutant grids through `surface_aqi_hcho.aqi` to derive AQI category and dominant pollutant layers.
+6. **HCHO hotspot attribution:** combine `surface_aqi_hcho.hotspots`, FIRMS fire counts and reanalysis winds to evaluate biomass-burning enhancement and transport.
+
+=======
+>>>>>>> main
+## Proposed Repository Structure 
 
 ```text
 .
 ├── configs/               # Project configuration for spatial extent, datasets and thresholds
 ├── data/                  # Local or linked input datasets, excluded from version control when large
+<<<<<<< codex/develop-surface-aqi-and-hcho-hotspot-analysis
+├── gee/                   # Google Earth Engine export templates
 ├── notebooks/             # Exploratory analysis and Google Earth Engine workflows
+├── scripts/               # Runnable local workflow demonstrations
+=======
+├── notebooks/             # Exploratory analysis and Google Earth Engine workflows
+>>>>>>> main
 ├── src/                   # Reusable preprocessing, modeling and visualization code
 ├── tests/                 # Unit tests for AQI, hotspot and metric utilities
 ├── outputs/               # Generated maps, figures and reports
