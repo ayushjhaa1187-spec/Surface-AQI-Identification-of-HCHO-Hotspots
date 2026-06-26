@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Large/local geospatial and model artifacts
+data/raw/*
+data/processed/*
+outputs/maps/*
+outputs/figures/*
+models/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!outputs/maps/.gitkeep
+!outputs/figures/.gitkeep
+!models/.gitkeep
+
+# Credentials and local config
+.env
+*.key
+*.pem
