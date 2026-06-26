@@ -35,23 +35,27 @@ st.header("⚙️ Pipeline Controls")
 if st.button("Run Full Pipeline"):
     with st.spinner("Running full processing pipeline..."):
         scripts = [
-            "scripts/download_cpcb.py",
-            "scripts/prepare_satellite_data.py",
-            "scripts/prepare_meteorology.py",
-            "scripts/download_firms.py",
-            "scripts/build_training_table.py",
-            "scripts/train_model.py",
-            "scripts/generate_aqi_maps.py",
-            "scripts/plot_aqi_map.py",
-            "scripts/detect_hcho_hotspots.py",
-            "scripts/analyze_fire_hcho_transport.py"
+            ["python", "scripts/download_cpcb.py", "--mock", "tests/fixtures/cpcb_sample.csv"],
+            ["python", "scripts/prepare_satellite_data.py", "--mock", "tests/fixtures/s5p_sample.parquet"],
+            ["python", "scripts/prepare_meteorology.py", "--mock", "tests/fixtures/era5_sample.parquet"],
+            ["python", "scripts/download_firms.py", "--mock", "tests/fixtures/firms_sample.csv"],
+            ["python", "scripts/build_training_table.py"],
+            ["python", "scripts/train_model.py"],
+            ["python", "scripts/generate_aqi_maps.py"],
+            ["python", "scripts/plot_aqi_map.py"],
+            ["python", "scripts/detect_hcho_hotspots.py"],
+            ["python", "scripts/analyze_fire_hcho_transport.py"]
         ]
         
-        for script in scripts:
+        for script_args in scripts:
             try:
-                subprocess.run(["python", script], check=True)
+                subprocess.run(script_args, check=True)
             except subprocess.CalledProcessError as e:
-                st.error(f"Error running {script}")
+                st.error(f"Error running {script_args[1]}")
                 st.stop()
+            except FileNotFoundError:
+                st.error(f"Could not find Python or the script {script_args[1]}")
+                st.stop()
+                
         st.success("Pipeline executed successfully! Refreshing data...")
         st.rerun()
