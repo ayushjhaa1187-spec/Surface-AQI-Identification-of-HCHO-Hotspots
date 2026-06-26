@@ -121,7 +121,7 @@ surface-aqi-hcho aqi --json '{"PM2.5": 45, "PM10": 260, "NO2": 25}'
 PYTHONPATH=src python scripts/run_demo_workflow.py
 ```
 
-The starter code is intentionally modular so data ingestion scripts, Google Earth Engine exports, CNN-LSTM training code and map generation can be added without changing the AQI, hotspot and validation utility APIs.
+The starter code is intentionally modular so data ingestion scripts, Google Earth Engine exports, CNN-LSTM training code and map generation can be added without changing the AQI, hotspot and validation utility APIs. The README and CLI now reflect the final resolved command structure: `surface-aqi-hcho aqi`, `surface-aqi-hcho inside-india` and `surface-aqi-hcho temporal-features`.
 
 ## Development Roadmap
 
