@@ -170,3 +170,11 @@ python scripts/plot_aqi_map.py
 python scripts/detect_hcho_hotspots.py
 python scripts/analyze_fire_hcho_transport.py
 ```
+
+## Web Dashboard
+
+You can visualize the model outputs and control the pipeline through our interactive **Streamlit Dashboard**.
+
+[![Deploy in Streamlit Community Cloud](https://streamlit.io/badge/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=ayushjhaa1187-spec/Surface-AQI-Identification-of-HCHO-Hotspots&branch=main&mainModule=app.py)
+
+Click the badge above to host the application for free!
