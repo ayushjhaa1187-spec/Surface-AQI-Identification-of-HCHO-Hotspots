@@ -153,3 +153,20 @@ The repository now covers the core pieces needed to continue toward a complete s
 ## Notes
 
 Large satellite, fire and reanalysis datasets should not be committed directly to the repository. Store large files externally or use reproducible download scripts, metadata manifests and configuration files to document data provenance.
+
+## How to Run Full Pipeline
+
+Once all Python dependencies and Earth Engine credentials are set up, run the complete data ingestion, modeling, and output pipeline using the following sequence:
+
+```bash
+python scripts/download_cpcb.py
+python scripts/prepare_satellite_data.py
+python scripts/prepare_meteorology.py
+python scripts/download_firms.py
+python scripts/build_training_table.py
+python scripts/train_model.py
+python scripts/generate_aqi_maps.py
+python scripts/plot_aqi_map.py
+python scripts/detect_hcho_hotspots.py
+python scripts/analyze_fire_hcho_transport.py
+```
